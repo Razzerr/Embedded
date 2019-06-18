@@ -23,15 +23,17 @@ void setup() {
 
 void loop() { 
   int distance = lookAndTellDistance(90);
-  if (distance <= 95 || lookAndTellDistance(85) <= 95 || lookAndTellDistance(95) <= 95){
-    w.setSpeed(100+pow((12-(0.12)*distance), 2));
+  distance = (distance + lookAndTellDistance(90))/2;
+  if (distance <= 95){
+    w.setSpeed(200-2*distance);
     w.back();
-  } else if (distance >= 105 || lookAndTellDistance(85) >= 105 || lookAndTellDistance(95) >= 105){
-    w.setSpeed(100+pow(((0.12)*distance-12), 2));
+  } else if (distance >= 105){
+    w.setSpeed(2*distance-180);
     w.forward();
   } else {
     w.stop();
   }
+  delay(50); 
 }
 
 int lookAndTellDistance(byte angle) {
@@ -39,7 +41,7 @@ int lookAndTellDistance(byte angle) {
   unsigned int distance;
 
   serwo.write(angle);
-  delay(100);  
+  delay(50);  
 /* uruchamia sonar (puls 10 ms na `TRIGGER')
  * oczekuje na powrotny sygnał i aktualizuje
  */

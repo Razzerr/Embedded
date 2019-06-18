@@ -71,7 +71,7 @@ void Wheels::setSpeedLeft(uint8_t s)
 
 void Wheels::setSpeed(uint8_t s)
 {
-      zeroCounters();
+    zeroCounters();
     setSpeedLeft(s);
     setSpeedRight(s);
 }
@@ -140,7 +140,6 @@ void Wheels::goForward(int cm){
     this->setSpeed(150);
     this->forward();
     while (cnt < 8*cm) delay(50);
-    Serial.println(cnt);
     this->stop();
     zeroCounters();
 }
